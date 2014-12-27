@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/24/2014 17:48:38
--- Generated from EDMX file: C:\samplewebsites\StartUp\ALogBook\ALogBook\ALogBook\EFData\ALogBook.edmx
+-- Date Created: 12/27/2014 11:19:40
+-- Generated from EDMX file: C:\samplewebsites\StartUp\ALogBook\ALogBook\AlgBk\ALogBook\EFData\ALogBook.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,47 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_UsersLogBook]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LogBooks] DROP CONSTRAINT [FK_UsersLogBook];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClinicSessionsRefClinics]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ClinicSessions] DROP CONSTRAINT [FK_ClinicSessionsRefClinics];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RefSurgeryLogBook]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LogBooks] DROP CONSTRAINT [FK_RefSurgeryLogBook];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UsersClinicSessions]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ClinicSessions] DROP CONSTRAINT [FK_UsersClinicSessions];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UsersTrainingHistory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TrainingHistories] DROP CONSTRAINT [FK_UsersTrainingHistory];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[TrainingHistories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TrainingHistories];
+GO
+IF OBJECT_ID(N'[dbo].[RefAbbreviations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RefAbbreviations];
+GO
+IF OBJECT_ID(N'[dbo].[RefSurgeries]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RefSurgeries];
+GO
+IF OBJECT_ID(N'[dbo].[LogBooks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LogBooks];
+GO
+IF OBJECT_ID(N'[dbo].[ClinicSessions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ClinicSessions];
+GO
+IF OBJECT_ID(N'[dbo].[RefClinics]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RefClinics];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables

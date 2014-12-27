@@ -15,22 +15,22 @@ namespace ALogBook.EFData
     
     public partial class ALogBookContainer : DbContext
     {
-        public ALogBookContainer()
-            : base("name=ALogBookContainer")
-        {
-        }
+        //public ALogBookContainer()
+        //    : base("name=ALogBookContainer")
+        //{
+        //}
     
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    throw new UnintentionalCodeFirstException();
+        //}
     
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<TrainingHistory> TrainingHistories { get; set; }
-        public virtual DbSet<RefAbbreviations> RefAbbreviations { get; set; }
-        public virtual DbSet<RefSurgery> RefSurgeries { get; set; }
-        public virtual DbSet<LogBook> LogBooks { get; set; }
-        public virtual DbSet<ClinicSessions> ClinicSessions { get; set; }
-        public virtual DbSet<RefClinics> RefClinics { get; set; }
+        //public virtual DbSet<Users> Users { get; set; }
+        //public virtual DbSet<TrainingHistory> TrainingHistories { get; set; }
+        //public virtual DbSet<RefAbbreviations> RefAbbreviations { get; set; }
+        //public virtual DbSet<RefSurgery> RefSurgeries { get; set; }
+        //public virtual DbSet<LogBook> LogBooks { get; set; }
+        //public virtual DbSet<ClinicSessions> ClinicSessions { get; set; }
+        //public virtual DbSet<RefClinics> RefClinics { get; set; }
     }
 }

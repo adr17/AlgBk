@@ -1,0 +1,6 @@
+C:\samplewebsites\StartUp\ALogBook\ALogBook\AlgBk\WebPages\bin\WebPages.dll.config
+C:\samplewebsites\StartUp\ALogBook\ALogBook\AlgBk\WebPages\bin\WebPages.dll
+C:\samplewebsites\StartUp\ALogBook\ALogBook\AlgBk\WebPages\bin\WebPages.pdb
+C:\samplewebsites\StartUp\ALogBook\ALogBook\AlgBk\WebPages\obj\Debug\WebPages.csprojResolveAssemblyReference.cache
+C:\samplewebsites\StartUp\ALogBook\ALogBook\AlgBk\WebPages\obj\Debug\WebPages.dll
+C:\samplewebsites\StartUp\ALogBook\ALogBook\AlgBk\WebPages\obj\Debug\WebPages.pdb

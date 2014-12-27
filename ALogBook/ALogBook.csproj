@@ -174,7 +174,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClinicSessionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogBookController.cs" />
+    <Compile Include="Controllers\RefDataAbbrController.cs" />
+    <Compile Include="Controllers\RefDataSurgeryController.cs" />
+    <Compile Include="Controllers\TraingingHistoryController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="EFData\ALogBook.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
