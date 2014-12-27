@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ALogBook.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ALogBookStoreContainer">
+    <EntitySet Name="Users" EntityType="ALogBook.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrainingHistories" EntityType="ALogBook.Store.TrainingHistories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RefAbbreviations" EntityType="ALogBook.Store.RefAbbreviations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RefSurgeries" EntityType="ALogBook.Store.RefSurgeries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogBooks" EntityType="ALogBook.Store.LogBooks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClinicSessions" EntityType="ALogBook.Store.ClinicSessions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RefClinics" EntityType="ALogBook.Store.RefClinics" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UsersLogBook" Association="ALogBook.Store.UsersLogBook">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LogBook" EntitySet="LogBooks" />
+    </AssociationSet>
+    <AssociationSet Name="ClinicSessionsRefClinics" Association="ALogBook.Store.ClinicSessionsRefClinics">
+      <End Role="ClinicSessions" EntitySet="ClinicSessions" />
+      <End Role="RefClinics" EntitySet="RefClinics" />
+    </AssociationSet>
+    <AssociationSet Name="RefSurgeryLogBook" Association="ALogBook.Store.RefSurgeryLogBook">
+      <End Role="RefSurgery" EntitySet="RefSurgeries" />
+      <End Role="LogBook" EntitySet="LogBooks" />
+    </AssociationSet>
+    <AssociationSet Name="UsersClinicSessions" Association="ALogBook.Store.UsersClinicSessions">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ClinicSessions" EntitySet="ClinicSessions" />
+    </AssociationSet>
+    <AssociationSet Name="UsersTrainingHistory" Association="ALogBook.Store.UsersTrainingHistory">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TrainingHistory" EntitySet="TrainingHistories" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address3" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone2" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrainingHistories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="Year" Type="smallint" Nullable="false" />
+    <Property Name="UsersId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefAbbreviations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefSurgeries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogBooks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="MRN" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Procedure" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Indication" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Assist" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Supervised" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Unsupervised" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TeachingByTrainee" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UsersId" Type="int" Nullable="false" />
+    <Property Name="RefSurgeryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClinicSessions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RefClinicsId" Type="int" Nullable="false" />
+    <Property Name="UsersId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefClinics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UsersLogBook">
+    <End Role="Users" Type="ALogBook.Store.Users" Multiplicity="1" />
+    <End Role="LogBook" Type="ALogBook.Store.LogBooks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogBook">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClinicSessionsRefClinics">
+    <End Role="ClinicSessions" Type="ALogBook.Store.ClinicSessions" Multiplicity="*" />
+    <End Role="RefClinics" Type="ALogBook.Store.RefClinics" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="RefClinics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClinicSessions">
+        <PropertyRef Name="RefClinicsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RefSurgeryLogBook">
+    <End Role="RefSurgery" Type="ALogBook.Store.RefSurgeries" Multiplicity="1" />
+    <End Role="LogBook" Type="ALogBook.Store.LogBooks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RefSurgery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogBook">
+        <PropertyRef Name="RefSurgeryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsersClinicSessions">
+    <End Role="Users" Type="ALogBook.Store.Users" Multiplicity="1" />
+    <End Role="ClinicSessions" Type="ALogBook.Store.ClinicSessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClinicSessions">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsersTrainingHistory">
+    <End Role="Users" Type="ALogBook.Store.Users" Multiplicity="1" />
+    <End Role="TrainingHistory" Type="ALogBook.Store.TrainingHistories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingHistory">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ALogBook" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ALogBookContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="ALogBook.Users" />
+          <EntitySet Name="TrainingHistories" EntityType="ALogBook.TrainingHistory" />
+          <EntitySet Name="RefAbbreviations" EntityType="ALogBook.RefAbbreviations" />
+          <EntitySet Name="RefSurgeries" EntityType="ALogBook.RefSurgery" />
+          <EntitySet Name="LogBooks" EntityType="ALogBook.LogBook" />
+          <AssociationSet Name="UsersLogBook" Association="ALogBook.UsersLogBook">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LogBook" EntitySet="LogBooks" />
+          </AssociationSet>
+          <EntitySet Name="ClinicSessions" EntityType="ALogBook.ClinicSessions" />
+          <EntitySet Name="RefClinics" EntityType="ALogBook.RefClinics" />
+          <AssociationSet Name="ClinicSessionsRefClinics" Association="ALogBook.ClinicSessionsRefClinics">
+            <End Role="ClinicSessions" EntitySet="ClinicSessions" />
+            <End Role="RefClinics" EntitySet="RefClinics" />
+          </AssociationSet>
+          <AssociationSet Name="RefSurgeryLogBook" Association="ALogBook.RefSurgeryLogBook">
+            <End Role="RefSurgery" EntitySet="RefSurgeries" />
+            <End Role="LogBook" EntitySet="LogBooks" />
+          </AssociationSet>
+          <AssociationSet Name="UsersClinicSessions" Association="ALogBook.UsersClinicSessions">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ClinicSessions" EntitySet="ClinicSessions" />
+          </AssociationSet>
+          <AssociationSet Name="UsersTrainingHistory" Association="ALogBook.UsersTrainingHistory">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TrainingHistory" EntitySet="TrainingHistories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Address1" Type="String" Nullable="false" />
+          <Property Name="Address2" Type="String" Nullable="false" />
+          <Property Name="Address3" Type="String" Nullable="false" />
+          <Property Name="Phone1" Type="String" Nullable="false" />
+          <Property Name="Phone2" Type="String" Nullable="false" />
+          <NavigationProperty Name="ClinicSessions" Relationship="ALogBook.UsersClinicSessions" FromRole="Users" ToRole="ClinicSessions" />
+        </EntityType>
+        <EntityType Name="TrainingHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="Year" Type="Int16" Nullable="false" />
+          <Property Name="UsersId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ALogBook.UsersTrainingHistory" FromRole="TrainingHistory" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="RefAbbreviations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefSurgery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="MRN" Type="String" Nullable="false" />
+          <Property Name="Procedure" Type="String" Nullable="false" />
+          <Property Name="Indication" Type="String" Nullable="false" />
+          <Property Name="Assist" Type="String" Nullable="false" />
+          <Property Name="Supervised" Type="String" Nullable="false" />
+          <Property Name="Unsupervised" Type="String" Nullable="false" />
+          <Property Name="TeachingByTrainee" Type="String" Nullable="false" />
+          <Property Name="Comments" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ALogBook.UsersLogBook" FromRole="LogBook" ToRole="Users" />
+          <Property Name="UsersId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RefSurgery" Relationship="ALogBook.RefSurgeryLogBook" FromRole="LogBook" ToRole="RefSurgery" />
+          <Property Name="RefSurgeryId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UsersLogBook">
+          <End Type="ALogBook.Users" Role="Users" Multiplicity="1" />
+          <End Type="ALogBook.LogBook" Role="LogBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogBook">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ClinicSessions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" Nullable="false" />
+          <NavigationProperty Name="RefClinic" Relationship="ALogBook.ClinicSessionsRefClinics" FromRole="ClinicSessions" ToRole="RefClinics" />
+          <Property Name="RefClinicsId" Type="Int32" Nullable="false" />
+          <Property Name="UsersId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefClinics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="ClinicSessionsRefClinics">
+          <End Type="ALogBook.ClinicSessions" Role="ClinicSessions" Multiplicity="*" />
+          <End Type="ALogBook.RefClinics" Role="RefClinics" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="RefClinics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClinicSessions">
+              <PropertyRef Name="RefClinicsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefSurgeryLogBook">
+          <End Type="ALogBook.RefSurgery" Role="RefSurgery" Multiplicity="1" />
+          <End Type="ALogBook.LogBook" Role="LogBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefSurgery">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogBook">
+              <PropertyRef Name="RefSurgeryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersClinicSessions">
+          <End Type="ALogBook.Users" Role="Users" Multiplicity="1" />
+          <End Type="ALogBook.ClinicSessions" Role="ClinicSessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClinicSessions">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersTrainingHistory">
+          <End Type="ALogBook.Users" Role="Users" Multiplicity="1" />
+          <End Type="ALogBook.TrainingHistory" Role="TrainingHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingHistory">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ALogBookStoreContainer" CdmEntityContainer="ALogBookContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(ALogBook.Users)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(ALogBook.TrainingHistory)">
+        <MappingFragment StoreEntitySet="TrainingHistories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefAbbreviations">
+      <EntityTypeMapping TypeName="IsTypeOf(ALogBook.RefAbbreviations)">
+        <MappingFragment StoreEntitySet="RefAbbreviations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefSurgeries">
+      <EntityTypeMapping TypeName="IsTypeOf(ALogBook.RefSurgery)">
+        <MappingFragment StoreEntitySet="RefSurgeries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogBooks">
+      <EntityTypeMapping TypeName="IsTypeOf(ALogBook.LogBook)">
+        <MappingFragment StoreEntitySet="LogBooks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="MRN" ColumnName="MRN" />
+          <ScalarProperty Name="Procedure" ColumnName="Procedure" />
+          <ScalarProperty Name="Indication" ColumnName="Indication" />
+          <ScalarProperty Name="Assist" ColumnName="Assist" />
+          <ScalarProperty Name="Supervised" ColumnName="Supervised" />
+          <ScalarProperty Name="Unsupervised" ColumnName="Unsupervised" />
+          <ScalarProperty Name="TeachingByTrainee" ColumnName="TeachingByTrainee" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="RefSurgeryId" ColumnName="RefSurgeryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClinicSessions">
+      <EntityTypeMapping TypeName="IsTypeOf(ALogBook.ClinicSessions)">
+        <MappingFragment StoreEntitySet="ClinicSessions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="RefClinicsId" ColumnName="RefClinicsId" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefClinics">
+      <EntityTypeMapping TypeName="IsTypeOf(ALogBook.RefClinics)">
+        <MappingFragment StoreEntitySet="RefClinics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
