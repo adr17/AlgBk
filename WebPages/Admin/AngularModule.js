@@ -1,1 +1,1 @@
-﻿
+﻿window.app = angular.module('angularLogbook', []);

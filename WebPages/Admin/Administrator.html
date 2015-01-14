@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <script src="../scripts/jquery-1.9.1.min.js"></script>
+    <script src="../scripts/angular.js"></script>
+    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="AngularModule.js"></script>
+    <script src="administratorController.js"></script>
+
+    <title></title>
+</head>
+<body data-ng-app="angularLogbook">
+    <section data-ng-controller="adminController">
+
+        <div id="menuContainer">
+            <ul class="breadcrumb">
+                <li><a href="" ng-click="menuChange('abbr')">Data Abbr</a></li>
+                <li><a href="" ng-click="menuChange('surgery')">Datat Surgery</a></li>
+                <li><a href="" ng-click="menuChange('logbook')">Logbook</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2><strong>{{headerText}}</strong></h2>
+        </div>
+        <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.abbrHideShow">
+            <h1>Manager Abbr</h1>
+        </div>
+
+        <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.surgeryHideShow">
+            <h1>Manager Surgery</h1>
+        </div>
+    </section>
+</body>
+</html>
