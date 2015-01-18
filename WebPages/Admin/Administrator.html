@@ -24,9 +24,56 @@
         </div>
         <div>
             <h2><strong>{{headerText}}</strong></h2>
+            <div ng-show="errorMessage" class="alert alert-danger"><h3>{{errorMessage}}</h3></div>
+            <div ng-show="successMessage" class="alert alert-dismissable alert-info"><h3>{{successMessage}}</h3></div>
         </div>
         <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.abbrHideShow">
+            <div>
+             
+            </div>
             <h1>Manager Abbr</h1>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>
+                            <h3>
+                                Code
+                            </h3>
+                        </td>
+                        <td>
+                            <h3>
+                                Desc
+                            </h3>
+                        </td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="refAbbr in refAbbrs |orderBy:sort.column:sort.descending">
+                        <td>
+                            <span data-ng-hide="editMode">
+                                {{refAbbr.Code}}
+                            </span>
+                            <input type="text" data-ng-show="editMode" data-ng-model="refAbbr.Code" data-ng-required />
+                        </td>
+                        <td>
+                            <span data-ng-hide="editMode">
+                                {{refAbbr.Description}}
+                            </span>
+                            <input type="text" data-ng-show="editMode" data-ng-model="refAbbr.Description" data-ng-required />
+                        </td>
+
+                        <td>
+                            <button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true; editRow(refAbbrs)" class="btn btn-primary">Edit</button>
+                            <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false;saveField($index)" class="btn btn-primary">Save</button>
+                            <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
+                            <!--<button type="button" class="btn btn-primary">Update</button>-->
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
         </div>
 
         <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.surgeryHideShow">
