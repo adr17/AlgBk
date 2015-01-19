@@ -28,25 +28,6 @@ window.app.factory('getAllAbbreviations', ['$http', '$q', function ($http, $q) {
 
 
 window.app.factory('putRefAbbrsService', ['$http', '$q', function ($http, $q) {
-    //var deferred = $q.defer();
-    //var putResponse = function (Id, refAbbr) {
-    //    if (Id) {
-    //        // PUT api/RefDataAbbr/5
-    //        var putRefAbbrURL = webApi + 'RefDataAbbr/' + Id;
-    //        $http({
-    //            url: putRefAbbrURL,
-    //            method: "Put",
-    //            data: refAbbr
-    //        }).success(function (data, status, headers, config) {
-    //            deferred.resolve(data, status)
-    //        }).error(function (data, status) {
-    //            deferred.reject(data, status);
-    //        });
-    //        //return deferred.promise;
-    //    }
-
-    //};
-    //return { putResponse: deferred.promise };
 
     var putResponse = function (Id, refAbbr) {
         if (Id) {
@@ -62,19 +43,66 @@ window.app.factory('putRefAbbrsService', ['$http', '$q', function ($http, $q) {
     };
     return { putResponse: putResponse };
 
+}]);
+
+
+window.app.factory('postRefAbbrsService', ['$http', function ($http) {
+
+    var postResponse = function (data) {
+        if (data) {
+            // POST api/Users/5
+            var putRefAbbrURL = webApi + 'RefDataAbbr/';
+            return $http({
+                url: putRefAbbrURL,
+                method: "POST",
+                data: data
+            }).then(function (response) { return response; }, function (response) { return response; });
+        }
+
+    };
+    return { postResponse: postResponse };
 
 }]);
 
 
-window.app.controller('adminController', function ($scope, $http, menuData, getAllAbbreviations, putRefAbbrsService) {
+
+window.app.factory('deleteRefAbbrsService', ['$http', function ($http) {
+
+    var deleteResponse = function (Id) {
+        if (Id) {
+            // DELETE api/RefDataAbbr/5
+            var deleteRefAbbrURL = webApi + 'RefDataAbbr/'+Id;
+            return $http({
+                url: deleteRefAbbrURL,
+                method: "DELETE"
+            }).then(function (response) { return response; }, function (response) { return response; });
+        }
+
+    };
+    return { deleteResponse: deleteResponse };
+
+}]);
+
+
+window.app.controller('adminController', function ($scope, $http, menuData, getAllAbbreviations, putRefAbbrsService, postRefAbbrsService, deleteRefAbbrsService) {
     $scope.headerText = "Admin Controller";
-   
+
     $scope.getAllAbbreviations = getAllAbbreviations;
     $scope.putRefAbbrsService = putRefAbbrsService;
+
     $scope.refAbbrs = [];
     init();
 
     function init() {
+
+        //Set up empty model for Add
+
+        $scope.refAbbr = {};
+        $scope.refAbbr.Id = 0;
+        $scope.refAbbr.Code = "";
+        $scope.refAbbr.Description = "";
+
+
         $scope.getAllAbbreviations.then(
             function (data) {
                 $scope.refAbbrs = data;
@@ -104,17 +132,6 @@ window.app.controller('adminController', function ($scope, $http, menuData, getA
 
 
     $scope.putrefAbbrs = function (Id, refAbbr) {
-        //$scope.putRefAbbrsService.putResponse(Id, refAbbr).then(
-        //    function (data, status) { OnUpdateComplete(status) }, function () { }
-
-        //    );
-        //$scope.putRefAbbrsService.then(function (data, status) {
-        //    if (status && status === 204)
-        //        OnUpdateComplete(status);
-        //    else
-        //        OnError(response);
-        //});
-
         $scope.putRefAbbrsService = putRefAbbrsService.putResponse(Id, refAbbr);
         $scope.putRefAbbrsService.then(function (response) {
             if (response && response.status === 204)
@@ -125,10 +142,55 @@ window.app.controller('adminController', function ($scope, $http, menuData, getA
 
     };
 
+    $scope.postrefAbbrs = function (refAbbr) {
+
+        $scope.postRefAbbrsService = postRefAbbrsService.postResponse(refAbbr);
+        $scope.postRefAbbrsService.then(function (response) {
+            if (response && response.status === 201)
+                OnUpdateComplete(response);
+            else
+                OnError(response);
+        });
+
+    };
+
+    $scope.deleteAbbr = function (Id) {
+        if (Id) {
+            var r = confirm("Do you want to Delete this ?");
+            if (r == true) {
+                // DELETE api/RefDataAbbr/5
+                $scope.deleteRefAbbrsService = deleteRefAbbrsService.deleteResponse(Id);
+                $scope.deleteRefAbbrsService.then(function (response) {
+                    if (response && response.status === 200)
+                        OnUpdateComplete(response);
+                    else
+                        OnError(response);
+                });
+            }
+        }
+
+    }
+
+
+    $scope.submitAbbr = function (isValid) {
+        // check to make sure the form is completely valid
+        if (isValid) {
+            $scope.postrefAbbrs($scope.refAbbr);
+        }
+
+    };
 
     var OnUpdateComplete = function (response) {
         if (response.status == 204) {
             $scope.successMessage = "Updated!!";
+        }
+
+        if (response.status == 201) {
+            $scope.successMessage = "Added!!";
+        }
+
+        if (response.status == 200) {
+            $scope.successMessage = "Deleted!!";
         }
     };
 

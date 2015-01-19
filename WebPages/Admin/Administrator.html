@@ -29,9 +29,36 @@
         </div>
         <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.abbrHideShow">
             <div>
-             
+
             </div>
             <h1>Manager Abbr</h1>
+
+            <form name="addAbbrForm" class="form-horizontal" ng-submit="submitAbbr(addAbbrForm.$valid)">
+                <fieldset>
+                    <div class="page-header">
+                        <h1>Add <small>abbr</small></h1>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3 col-md-3 col-lg-4" ng-class="{ has-error: addAbbrForm.type.$invalid && !addAbbrForm.inputType.$pristine }">
+                            <input type="text" class="form-control" name="inputType" placeholder="Type" ng-model="refAbbr.Code" required>
+                            <p ng-show="addAbbrForm.inputType.$invalid && !addAbbrForm.inputType.$pristine" class="help-block">Code is required</p>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3 col-md-3 col-lg-4">
+                            <input type="text" class="form-control" name="inputDesc" placeholder="Type Desc" ng-model="refAbbr.Description" required>
+                            <p ng-show="addAbbrForm.inputDesc.$invalid && !addAbbrForm.inputDesc.$pristine" class="help-block">Desc is required</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 col-md-3 col-lg-4"><input id="Button1" type="submit" ng-disabled="addAbbrForm.$invalid" class="btn btn-primary" value="Submit" /></div>
+
+                </fieldset>
+            </form>
+
+
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -45,6 +72,7 @@
                                 Desc
                             </h3>
                         </td>
+                        <td></td>
                         <td></td>
                     </tr>
                 </thead>
@@ -69,7 +97,14 @@
                             <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
                             <!--<button type="button" class="btn btn-primary">Update</button>-->
                         </td>
-
+                        <td>
+                            <!--<a href="#" class="btn btn-danger" ng-click="deleteUser({{user.Id}})" role="button">Delete</a>-->
+                            <button type="button"
+                                    ng-click="deleteAbbr(refAbbr.Id)"
+                                    class="btn btn-danger">
+                                Delete
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
 
