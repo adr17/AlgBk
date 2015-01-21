@@ -1,0 +1,83 @@
+﻿<section data-ng-controller="refAbbrController">
+    <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.abbrHideShow">
+        <h1>Manager Abbr</h1>
+        <div ng-show="errorMessage" class="alert alert-danger"><h3>{{errorMessage}}</h3></div>
+        <div ng-show="successMessage" class="alert alert-dismissable alert-info"><h3>{{successMessage}}</h3></div>
+        <form name="addAbbrForm" class="form-horizontal" ng-submit="submitAbbr(addAbbrForm.$valid)">
+            <fieldset>
+                <div class="page-header">
+                    <h3>Add <small>abbr</small></h3>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 col-md-3 col-lg-4" ng-class="{ has-error: addAbbrForm.type.$invalid && !addAbbrForm.inputType.$pristine }">
+                        <input type="text" class="form-control" name="inputType" placeholder="Type" ng-model="refAbbr.Code" required>
+                        <p ng-show="addAbbrForm.inputType.$invalid && !addAbbrForm.inputType.$pristine" class="help-block">Code is required</p>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 col-md-3 col-lg-4">
+                        <input type="text" class="form-control" name="inputDesc" placeholder="Type Desc" ng-model="refAbbr.Description" required>
+                        <p ng-show="addAbbrForm.inputDesc.$invalid && !addAbbrForm.inputDesc.$pristine" class="help-block">Desc is required</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-3 col-md-3 col-lg-4"><input id="Button1" type="submit" ng-disabled="addAbbrForm.$invalid" class="btn btn-primary" value="Submit" /></div>
+
+            </fieldset>
+        </form>
+        <hr />
+        <div ng-hide="refAbbrs">
+            <h2> Data Loading...</h2>
+        </div>
+        <table class="table table-bordered" ng-show="refAbbrs">
+            <thead>
+                <tr>
+                    <td>
+                        <h3>
+                            Code
+                        </h3>
+                    </td>
+                    <td colspan="3">
+                        <h3>
+                            Desc
+                        </h3>
+                    </td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="refAbbr in refAbbrs |orderBy:sort.column:sort.descending">
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{refAbbr.Code}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="refAbbr.Code" data-ng-required />
+                    </td>
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{refAbbr.Description}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="refAbbr.Description" data-ng-required />
+                    </td>
+
+                    <td>
+                        <button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true; editRow(refAbbrs)" class="btn btn-primary">Edit</button>
+                        <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false;saveField($index)" class="btn btn-primary">Save</button>
+                        <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
+                        <!--<button type="button" class="btn btn-primary">Update</button>-->
+                    </td>
+                    <td>
+                        <!--<a href="#" class="btn btn-danger" ng-click="deleteUser({{user.Id}})" role="button">Delete</a>-->
+                        <button type="button"
+                                ng-click="deleteAbbr(refAbbr.Id)"
+                                class="btn btn-danger">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</section>

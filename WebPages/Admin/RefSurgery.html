@@ -1,0 +1,72 @@
+﻿<section data-ng-controller="refSurgeryController">
+    <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.abbrHideShow">
+        <h1>Manager Abbr</h1>
+        <div ng-show="errorMessage" class="alert alert-danger"><h3>{{errorMessage}}</h3></div>
+        <div ng-show="successMessage" class="alert alert-dismissable alert-info"><h3>{{successMessage}}</h3></div>
+
+        <form name="addForm" class="form-horizontal" ng-submit="submitAbbr(addAbbrForm.$valid)">
+            <fieldset>
+                <div class="page-header">
+                    <h3>Add <small>abbr</small></h3>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 col-md-3 col-lg-4" ng-class="{ has-error: addForm.type.$invalid && !addForm.inputType.$pristine }">
+                        <input type="text" class="form-control" name="inputType" placeholder="Type" ng-model="refSurgery.Type" required>
+                        <p ng-show="addForm.inputType.$invalid && !addForm.inputType.$pristine" class="help-block">Type is required</p>
+
+                    </div>
+                </div>
+             
+                <div class="col-sm-3 col-md-3 col-lg-4"><input id="Button1" type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary" value="Submit" /></div>
+
+            </fieldset>
+        </form>
+        <hr />
+        <div ng-hide="refSurgeries">
+            <h2> Data Loading...</h2>
+        </div>
+        <table class="table table-bordered" ng-show="refSurgeries">
+            <thead>
+                <tr>
+                    <td>
+                        <h3>
+                            Type
+                        </h3>
+                    </td>
+                    <td colspan="3">
+                        <h3>
+                          
+                        </h3>
+                    </td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="refSurgery in refSurgeries |orderBy:sort.column:sort.descending">
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{refSurgery.Type}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="refSurgery.Type" data-ng-required />
+                    </td>
+             
+                    <td>
+                        <button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true; editRow(refSurgery)" class="btn btn-primary">Edit</button>
+                        <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false;saveField($index)" class="btn btn-primary">Save</button>
+                        <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
+                        <!--<button type="button" class="btn btn-primary">Update</button>-->
+                    </td>
+                    <td>
+                        <!--<a href="#" class="btn btn-danger" ng-click="deleteUser({{user.Id}})" role="button">Delete</a>-->
+                        <button type="button"
+                                ng-click="deleteSuregery(refAbbr.Id)"
+                                class="btn btn-danger">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</section>
