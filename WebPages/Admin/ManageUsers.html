@@ -1,0 +1,175 @@
+﻿<section data-ng-controller="managerUsersController">
+    <div id="usersContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1">
+        <h1>Manager Users</h1>
+        <div ng-show="errorMessage" class="alert alert-danger"><h3>{{errorMessage}}</h3></div>
+        <div ng-show="successMessage" class="alert alert-dismissable alert-info"><h3>{{successMessage}}</h3></div>
+
+        <form name="addForm" class="form" ng-submit="submitData(addForm.$valid)">
+            <fieldset>
+                <div class="page-header">
+                    <h3>Add <small>users</small></h3>
+                </div>
+                <div class='container'>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtfname.$invalid && !addForm.txtfname.$pristine }">
+                            <p ng-show="addForm.txtfname.$invalid && !addForm.txtfname.$pristine" class="text-danger">First Name is required</p>
+                            <input type="text" class="form-control" name="txtfname" placeholder="First Name" ng-model="user.FirstName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtlname.$invalid && !addForm.txtlname.$pristine }">
+                            <p ng-show="addForm.txtlname.$invalid && !addForm.txtlname.$pristine" class="text-danger">Last Name is required</p>
+                            <input type="text" class="form-control" name="txtlname" placeholder="Last Name" ng-model="user.LastName" required>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtemail.$invalid && !addForm.txtemail.$pristine }">
+                            <p ng-show="addForm.txtemail.$invalid && !addForm.txtemail.$pristine" class="text-danger">Email is required</p>
+                            <input type="email" class="form-control" name="txtemail" placeholder="Email" ng-model="user.Email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.AddressLine1.$invalid && !addForm.AddressLine1.$pristine }">
+                            <p ng-show="addForm.AddressLine1.$invalid && !addForm.AddressLine1.$pristine" class="text-danger">address is required</p>
+                            <input type="text" class="form-control" name="AddressLine1" placeholder="Address Line 1" ng-model="user.Address1" required>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-6 col-lg-8">
+                            <input type="text" class="form-control" name="AddressLine2" placeholder="Address Line 2" ng-model="user.Address2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.Phone1.$invalid && !addForm.Phone1.$pristine }">
+                            <p ng-show="addForm.Phone1.$invalid && !addForm.Phone1.$pristine" class="text-danger">Phone is required</p>
+                            <input type="number" class="form-control" name="Phone1" placeholder="Phone #" ng-model="user.Phone1" required>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-md-6 col-lg-8">
+                            <input type="number" class="form-control" name="Phone2" placeholder="Phone #" ng-model="user.Phone2">
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-8"><input id="Button1" type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary" value="Submit" /></div>
+                </div>
+            </fieldset>
+        </form>
+        <hr />
+        <div ng-hide="Users">
+            <h2> Data Loading...</h2>
+        </div>
+        <table class="table table-bordered" ng-show="Users">
+            <thead>
+                <tr>
+                    <td>
+                        <h3>
+                            First Name
+                        </h3>
+                    </td>
+                    <td>
+                        <h3>
+                            Last Name
+                        </h3>
+                    </td>
+                    <td>
+                        <h3>
+                            Email
+                        </h3>
+                    </td>
+                    <td>
+                        <h3>
+                            Address 1
+                        </h3>
+                    </td>
+                    <td>
+                        <h3>
+                            Address 2
+                        </h3>
+                    </td>
+                    <td>
+                        <h3>
+                            Phone 1
+                        </h3>
+                    </td>
+                    <td>
+                        <h3>
+                            Phone 2
+                        </h3>
+                    </td>
+                    <td colspan="3">
+                        <h3></h3>
+                    </td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in Users |orderBy:sort.column:sort.descending">
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{user.FirstName}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="user.FirstName" data-ng-required />
+                    </td>
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{user.LastName}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="user.LastName" data-ng-required />
+                    </td>
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{user.Email}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="user.Email" data-ng-required />
+                    </td>
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{user.Address1}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="user.Address1" data-ng-required />
+                    </td>
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{user.Address2}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="user.Address2" data-ng-required />
+                    </td>
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{user.Phone1}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="user.Phone1" data-ng-required />
+                    </td>
+                    <td>
+                        <span data-ng-hide="editMode">
+                            {{user.Phone2}}
+                        </span>
+                        <input type="text" data-ng-show="editMode" data-ng-model="user.Phone2" data-ng-required />
+                    </td>
+                    <td>
+                        <button type="submit" data-ng-hide="editMode" data-ng-click="editMode = true; editRow(user)" class="btn btn-primary">Edit</button>
+                        <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false;saveField($index)" class="btn btn-primary">Save</button>
+                        <button type="submit" data-ng-show="editMode" data-ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
+
+                    </td>
+                    <td>
+                        <!--<a href="#" class="btn btn-danger" ng-click="deleteUser({{user.Id}})" role="button">Delete</a>-->
+                        <button type="button"
+                                ng-click="deleteData(user.Id)"
+                                class="btn btn-danger">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

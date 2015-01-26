@@ -15,7 +15,7 @@ namespace ALogBook.EFData
     public partial class LogBook
     {
         public int Id { get; set; }
-        public System.DateTime Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string MRN { get; set; }
         public string Procedure { get; set; }
         public string Indication { get; set; }

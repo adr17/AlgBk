@@ -59,8 +59,12 @@
   <ItemGroup>
     <Content Include="Admin\Administrator.html" />
     <Content Include="Admin\administratorController.js" />
+    <Content Include="Admin\ManageUsers.html" />
+    <Content Include="Admin\ManageUsers.js" />
     <Content Include="Admin\RefAbbr.html" />
     <Content Include="Admin\RefAbbr.js" />
+    <Content Include="Admin\RefSurgery.html" />
+    <Content Include="Admin\RefSurgery.js" />
     <Content Include="Admin\testpage.html" />
     <Content Include="Admin\TestPage.js" />
     <Content Include="scripts\angular.min.js.map" />

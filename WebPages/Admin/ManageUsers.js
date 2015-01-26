@@ -2,22 +2,22 @@
 //API
 var webApi = "http://localhost:41516/api/";
 
-//Directive RefSurgery
-window.app.directive('adminSurgery', function () {
+//Directive Users
+window.app.directive('adminUsers', function () {
     return {
         restrict: 'A',
-        templateUrl: 'RefSurgery.html',
+        templateUrl: 'ManageUsers.html',
         scope: {},
     };
 });
 
-window.app.factory('getAllSurgeriesService', ['$http', '$q', function ($http, $q) {
+window.app.factory('getAllService', ['$http', '$q', function ($http, $q) {
 
     var deferred = $q.defer();
-
+    // GET api/User
     $http({
         method: 'GET',
-        url: webApi + 'RefDataSurgery'
+        url: webApi + 'User'
     }).
        success(function (data, status, headers, config) {
            deferred.resolve(data)
@@ -30,16 +30,16 @@ window.app.factory('getAllSurgeriesService', ['$http', '$q', function ($http, $q
 }]);
 
 
-window.app.factory('putRefSurgeryService', ['$http', '$q', function ($http, $q) {
+window.app.factory('putService', ['$http', '$q', function ($http, $q) {
 
-    var putResponse = function (Id, RefSurgery) {
+    var putResponse = function (Id, data) {
         if (Id) {
-            // PUT api/Users/5
-            var putRefSurgeryURL = webApi + 'RefDataSurgery/' + Id;
+            // PUT api/User/5
+            var url = webApi + 'User/' + Id;
             return $http({
-                url: putRefSurgeryURL,
+                url: url,
                 method: "Put",
-                data: RefSurgery
+                data: data
             }).then(function (response) { return response; }, function (response) { return response; });
         }
 
@@ -49,16 +49,16 @@ window.app.factory('putRefSurgeryService', ['$http', '$q', function ($http, $q) 
 }]);
 
 
-window.app.factory('postRefSurgeryService', ['$http', function ($http) {
+window.app.factory('postService', ['$http', function ($http) {
 
-    var postResponse = function (data) {
-        if (data) {
-            // POST api/Users/5
-            var putRefAbbrURL = webApi + 'RefDataSurgery/';
+    var postResponse = function (users) {
+        if (users) {
+            // POST api/User/5
+            var url = webApi + 'User/';
             return $http({
-                url: putRefAbbrURL,
+                url: url,
                 method: "POST",
-                data: data
+                data: users
             }).then(function (response) { return response; }, function (response) { return response; });
         }
 
@@ -69,14 +69,14 @@ window.app.factory('postRefSurgeryService', ['$http', function ($http) {
 
 
 
-window.app.factory('deleteRefSurgeryService', ['$http', function ($http) {
+window.app.factory('deleteService', ['$http', function ($http) {
 
     var deleteResponse = function (Id) {
         if (Id) {
-            // DELETE api/RefDataAbbr/5
-            var deleteRefAbbrURL = webApi + 'RefDataSurgery/' + Id;
+            
+            var url = webApi + 'user/' + Id;
             return $http({
-                url: deleteRefAbbrURL,
+                url: url,
                 method: "DELETE"
             }).then(function (response) { return response; }, function (response) { return response; });
         }
@@ -87,8 +87,8 @@ window.app.factory('deleteRefSurgeryService', ['$http', function ($http) {
 }]);
 
 
-window.app.controller('refSurgeryController', function ($scope, $http, getAllSurgeriesService, putRefSurgeryService, postRefSurgeryService, deleteRefSurgeryService) {
-    $scope.getAllSurgeriesService = getAllSurgeriesService;
+window.app.controller('managerUsersController', function ($scope, $http, getAllService, putService, postService, deleteService) {
+    $scope.getAllService = getAllService;
     $scope.refAbbrs = [];
     init();
 
@@ -96,27 +96,37 @@ window.app.controller('refSurgeryController', function ($scope, $http, getAllSur
 
         //Set up empty model for Add
 
-        $scope.refSurgery = {};
-        $scope.refSurgery.Id = 0;
-        $scope.refSurgery.Type = "";
+        $scope.user = {};
+        $scope.users = [];
         loadData();
+    }
 
+    function clearUser() {
+        $scope.user = {};
+        //$scope.user.FirstName = "";
+        //$scope.user.LastName = "";
+        //$scope.user.Email = "";
+        //$scope.user.Address1 = "";
+        //$scope.user.Address2 = "";
+        //$scope.user.Address3 = "";
+        //$scope.user.Phone1 = "";
+        //$scope.user.Phone2 = "";
     }
 
     function loadData() {
-        $scope.getAllSurgeriesService.then(
+        $scope.getAllService.then(
            function (data) {
-               $scope.refSurgeries = [];
-               $scope.refSurgeries = data;
+               $scope.Users = [];
+               $scope.Users = data;
            }, function (error) {
                OnError(error);
            }
            );
     }
 
-    $scope.putrefAbbrs = function (Id, refSurgery) {
-        $scope.putRefSurgeryService = putRefSurgeryService.putResponse(Id, refSurgery);
-        $scope.putRefSurgeryService.then(function (response) {
+    $scope.putService = function (Id, data) {
+        $scope.putService = putService.putResponse(Id, data);
+        $scope.putService.then(function (response) {
             if (response && response.status === 204)
                 OnUpdateComplete(response);
             else
@@ -125,14 +135,13 @@ window.app.controller('refSurgeryController', function ($scope, $http, getAllSur
 
     };
 
-    $scope.postRefSurgery = function (refSurgery) {
+    $scope.postData = function (data) {
 
-        $scope.postRefSurgeryService = postRefSurgeryService.postResponse(refSurgery);
-        $scope.postRefSurgeryService.then(function (response) {
-            if (response && response.status === 201) {
-                $scope.refSurgery.Id = 0;
-                $scope.refSurgery.Type = "";
-                OnUpdateComplete(response);
+        $scope.postService = postService.postResponse(data);
+        $scope.postService.then(function (response) {
+            if (response && response.status === 201) {              
+                OnUpdateComplete(response);               
+                loadData();
             }
             else
                 OnError(response);
@@ -140,13 +149,13 @@ window.app.controller('refSurgeryController', function ($scope, $http, getAllSur
 
     };
 
-    $scope.deleteSuregery = function (Id) {
+    $scope.deleteData = function (Id) {
         if (Id) {
             var r = confirm("Do you want to Delete this ?");
             if (r == true) {
                 // DELETE api/RefData/5
-                $scope.deleteRefSurgeryService = deleteRefSurgeryService.deleteResponse(Id);
-                $scope.deleteRefSurgeryService.then(function (response) {
+                $scope.deleteService = deleteService.deleteResponse(Id);
+                $scope.deleteService.then(function (response) {
                     if (response && response.status === 200) {
                         OnUpdateComplete(response);
                     }
@@ -157,10 +166,10 @@ window.app.controller('refSurgeryController', function ($scope, $http, getAllSur
         }
     }
 
-    $scope.submitSurgery = function (isValid) {
+    $scope.submitData = function (isValid) {
         // check to make sure the form is completely valid
         if (isValid) {
-            $scope.postRefSurgery($scope.refSurgery);
+            $scope.postData($scope.user);
         }
 
     };
@@ -203,21 +212,21 @@ window.app.controller('refSurgeryController', function ($scope, $http, getAllSur
 
     // Table Control
     $scope.editRow = function (field) {
-        $scope.editing = $scope.refSurgeries.indexOf(field);
+        $scope.editing = $scope.Users.indexOf(field);
         $scope.editField = angular.copy(field);
     }
 
     $scope.saveField = function (index) {
         if ($scope.editing !== false) {
 
-            $scope.putrefAbbrs($scope.refSurgeries[index].Id, $scope.refSurgeries[index]);
+            $scope.putService($scope.Users[index].Id, $scope.Users[index]);
             $scope.editing = false;
         }
     }
 
     $scope.cancel = function (index) {
         if ($scope.editing !== false) {
-            $scope.refSurgeries[$scope.editing] = $scope.editField;
+            $scope.Users[$scope.editing] = $scope.editField;
             $scope.editing = false;
         }
     }

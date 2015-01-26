@@ -202,16 +202,6 @@
     <Compile Include="EFData\LogBook.cs">
       <DependentUpon>ALogBook.tt</DependentUpon>
     </Compile>
-    <Compile Include="EFData\LogBookModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LogBookModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EFData\LogBookModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LogBookModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="EFData\RefAbbreviations.cs">
       <DependentUpon>ALogBook.tt</DependentUpon>
     </Compile>
@@ -242,21 +232,12 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="EFData\ALogBook.edmx.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="EFData\LogBookModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LogBookModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="EFData\LogBookModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LogBookModel.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="EFData\ALogBook.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ALogBook.Designer.cs</LastGenOutput>

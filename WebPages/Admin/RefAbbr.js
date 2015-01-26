@@ -6,7 +6,8 @@ var webApi = "http://localhost:41516/api/";
 window.app.directive('adminAbbr', function () {
     return {
         restrict: 'A',
-        templateUrl: 'RefAbbr.html'
+        templateUrl: 'RefAbbr.html',
+        scope: {},
     };
 });
 

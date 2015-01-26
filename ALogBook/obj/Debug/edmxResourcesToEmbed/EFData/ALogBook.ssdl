@@ -34,14 +34,14 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address1" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address2" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address3" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Phone1" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Phone2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Address1" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Address2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Address3" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phone1" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phone2" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="TrainingHistories">
     <Key>
@@ -73,15 +73,15 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="MRN" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Procedure" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Indication" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Assist" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Supervised" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Unsupervised" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="TeachingByTrainee" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="MRN" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Procedure" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Indication" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Assist" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Supervised" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Unsupervised" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TeachingByTrainee" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Comments" Type="nvarchar(max)" Nullable="true" />
     <Property Name="UsersId" Type="int" Nullable="false" />
     <Property Name="RefSurgeryId" Type="int" Nullable="false" />
   </EntityType>

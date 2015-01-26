@@ -34,14 +34,14 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FirstName" Type="String" Nullable="false" />
-    <Property Name="LastName" Type="String" Nullable="false" />
-    <Property Name="Email" Type="String" Nullable="false" />
-    <Property Name="Address1" Type="String" Nullable="false" />
-    <Property Name="Address2" Type="String" Nullable="false" />
-    <Property Name="Address3" Type="String" Nullable="false" />
-    <Property Name="Phone1" Type="String" Nullable="false" />
-    <Property Name="Phone2" Type="String" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="true" />
+    <Property Name="LastName" Type="String" Nullable="true" />
+    <Property Name="Email" Type="String" Nullable="true" />
+    <Property Name="Address1" Type="String" Nullable="true" />
+    <Property Name="Address2" Type="String" Nullable="true" />
+    <Property Name="Address3" Type="String" Nullable="true" />
+    <Property Name="Phone1" Type="String" Nullable="true" />
+    <Property Name="Phone2" Type="String" Nullable="true" />
     <NavigationProperty Name="ClinicSessions" Relationship="ALogBook.UsersClinicSessions" FromRole="Users" ToRole="ClinicSessions" />
   </EntityType>
   <EntityType Name="TrainingHistory">
@@ -75,15 +75,15 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Date" Type="DateTime" Nullable="false" />
-    <Property Name="MRN" Type="String" Nullable="false" />
-    <Property Name="Procedure" Type="String" Nullable="false" />
-    <Property Name="Indication" Type="String" Nullable="false" />
-    <Property Name="Assist" Type="String" Nullable="false" />
-    <Property Name="Supervised" Type="String" Nullable="false" />
-    <Property Name="Unsupervised" Type="String" Nullable="false" />
-    <Property Name="TeachingByTrainee" Type="String" Nullable="false" />
-    <Property Name="Comments" Type="String" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="true" />
+    <Property Name="MRN" Type="String" Nullable="true" />
+    <Property Name="Procedure" Type="String" Nullable="true" />
+    <Property Name="Indication" Type="String" Nullable="true" />
+    <Property Name="Assist" Type="String" Nullable="true" />
+    <Property Name="Supervised" Type="String" Nullable="true" />
+    <Property Name="Unsupervised" Type="String" Nullable="true" />
+    <Property Name="TeachingByTrainee" Type="String" Nullable="true" />
+    <Property Name="Comments" Type="String" Nullable="true" />
     <NavigationProperty Name="User" Relationship="ALogBook.UsersLogBook" FromRole="LogBook" ToRole="Users" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="RefSurgery" Relationship="ALogBook.RefSurgeryLogBook" FromRole="LogBook" ToRole="RefSurgery" />

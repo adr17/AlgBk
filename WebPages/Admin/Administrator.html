@@ -11,6 +11,9 @@
     <script src="administratorController.js"></script>
     <script src="TestPage.js"></script>
     <script src="RefAbbr.js"></script>
+    <script src="RefSurgery.js"></script>
+    <script src="ManageUsers.js"></script>
+
     <title></title>
 </head>
 <body data-ng-app="angularLogbook">
@@ -20,21 +23,32 @@
             <ul class="breadcrumb">
                 <li><a href="" ng-click="menuChange('abbr')">Data Abbr</a></li>
                 <li><a href="" ng-click="menuChange('surgery')">Datat Surgery</a></li>
-                <li><a href="" ng-click="menuChange('logbook')">Logbook</a></li>
+                <li><a href="" ng-click="menuChange('users')">Users</a></li>
             </ul>
         </div>
         <div>
             <h2><strong>{{headerText}}</strong></h2>
-            
+          
         </div>
-              
-        <div admin-abbr>
 
+        <div  class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-show="menuData.abbrShow">
+           
+                <div admin-abbr>
+
+                </div>
         </div>
-        <!--<div my-customer></div>-->
 
-        <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.surgeryHideShow">
-            <h1>Manager Surgery</h1>
+
+        <div  class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-show="menuData.surgeryHideShow">
+            <div admin-surgery>
+
+            </div>
+        </div>
+        
+        <div  class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-show="menuData.usersShow">
+            <div admin-users>
+
+            </div>
         </div>
     </section>
 </body>

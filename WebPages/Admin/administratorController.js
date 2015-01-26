@@ -16,19 +16,22 @@ window.app.controller('adminController', function ($scope, $http, menuData) {
     $scope.menuData = menuData;
     // Menu changers
     $scope.menuChange = function (str) {
-        $scope.menuData.abbrHideShow = true;
-        $scope.menuData.surgeryHideShow = true;
+        $scope.menuData.abbrHideShow = false;
+        $scope.menuData.surgeryHideShow = false;
+        $scope.menuData.abbrShow = false;
+        $scope.menuData.usersShow = true;
 
         if (str == 'abbr') {
-            $scope.menuData.abbrHideShow = false;
+            $scope.menuData.abbrHideShow = true;
+            $scope.menuData.abbrShow = true;
         }
 
         if (str == 'surgery') {
-            $scope.menuData.surgeryHideShow = false;
+            $scope.menuData.surgeryHideShow = true;
         }
 
-        if (str == 'logbook') {
-            $scope.menuData.logbookHideShow = false;
+        if (str == 'users') {
+            $scope.menuData.usersShow = true;
         }
     };
 

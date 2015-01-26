@@ -1,13 +1,13 @@
 ﻿<section data-ng-controller="refSurgeryController">
-    <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" ng-hide="menuData.abbrHideShow">
-        <h1>Manager Abbr</h1>
+    <div id="registerContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1" >
+        <h1>Manager Surgery Data</h1>
         <div ng-show="errorMessage" class="alert alert-danger"><h3>{{errorMessage}}</h3></div>
         <div ng-show="successMessage" class="alert alert-dismissable alert-info"><h3>{{successMessage}}</h3></div>
 
-        <form name="addForm" class="form-horizontal" ng-submit="submitAbbr(addAbbrForm.$valid)">
+        <form name="addForm" class="form-horizontal" ng-submit="submitSurgery(addForm.$valid)">
             <fieldset>
                 <div class="page-header">
-                    <h3>Add <small>abbr</small></h3>
+                    <h3>Add <small>surgery</small></h3>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-3 col-md-3 col-lg-4" ng-class="{ has-error: addForm.type.$invalid && !addForm.inputType.$pristine }">
@@ -16,7 +16,7 @@
 
                     </div>
                 </div>
-             
+
                 <div class="col-sm-3 col-md-3 col-lg-4"><input id="Button1" type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary" value="Submit" /></div>
 
             </fieldset>
@@ -59,7 +59,7 @@
                     <td>
                         <!--<a href="#" class="btn btn-danger" ng-click="deleteUser({{user.Id}})" role="button">Delete</a>-->
                         <button type="button"
-                                ng-click="deleteSuregery(refAbbr.Id)"
+                                ng-click="deleteSuregery(refSurgery.Id)"
                                 class="btn btn-danger">
                             Delete
                         </button>
