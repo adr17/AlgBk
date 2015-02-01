@@ -42,6 +42,11 @@
     <Property Name="Address3" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Phone1" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Phone2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TrainingSite" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TrainingYear" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Created" Type="datetime" Nullable="true" />
+    <Property Name="Modified" Type="datetime" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" />
   </EntityType>
   <EntityType Name="TrainingHistories">
     <Key>
@@ -52,6 +57,9 @@
     <Property Name="EndDate" Type="datetime" Nullable="false" />
     <Property Name="Year" Type="smallint" Nullable="false" />
     <Property Name="UsersId" Type="int" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="true" />
+    <Property Name="Modified" Type="datetime" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" />
   </EntityType>
   <EntityType Name="RefAbbreviations">
     <Key>
@@ -60,6 +68,9 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="true" />
+    <Property Name="Modified" Type="datetime" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" />
   </EntityType>
   <EntityType Name="RefSurgeries">
     <Key>
@@ -67,6 +78,9 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="true" />
+    <Property Name="Modified" Type="datetime" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" />
   </EntityType>
   <EntityType Name="LogBooks">
     <Key>
@@ -77,13 +91,16 @@
     <Property Name="MRN" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Procedure" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Indication" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Assist" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Supervised" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Unsupervised" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Assist" Type="bit" Nullable="true" />
+    <Property Name="Supervised" Type="bit" Nullable="true" />
+    <Property Name="Unsupervised" Type="bit" Nullable="true" />
     <Property Name="TeachingByTrainee" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Comments" Type="nvarchar(max)" Nullable="true" />
     <Property Name="UsersId" Type="int" Nullable="false" />
     <Property Name="RefSurgeryId" Type="int" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="true" />
+    <Property Name="Modified" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="ClinicSessions">
     <Key>
@@ -93,6 +110,9 @@
     <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
     <Property Name="RefClinicsId" Type="int" Nullable="false" />
     <Property Name="UsersId" Type="int" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="true" />
+    <Property Name="Modified" Type="datetime" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" />
   </EntityType>
   <EntityType Name="RefClinics">
     <Key>
@@ -100,6 +120,9 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="true" />
+    <Property Name="Modified" Type="datetime" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="true" />
   </EntityType>
   <Association Name="UsersLogBook">
     <End Role="Users" Type="ALogBook.Store.Users" Multiplicity="1" />

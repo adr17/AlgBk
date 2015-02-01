@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="ALogBook.TrainingHistory" Width="1.5" PointX="4.625" PointY="0.625" />
         <EntityTypeShape EntityType="ALogBook.RefAbbreviations" Width="1.5" PointX="10" PointY="1" />
         <EntityTypeShape EntityType="ALogBook.RefSurgery" Width="1.5" PointX="7.875" PointY="1.125" />
-        <EntityTypeShape EntityType="ALogBook.LogBook" Width="1.5" PointX="5.125" PointY="3.875" />
+        <EntityTypeShape EntityType="ALogBook.LogBook" Width="2.125" PointX="5.625" PointY="3.875" />
         <AssociationConnector Association="ALogBook.UsersLogBook" />
         <EntityTypeShape EntityType="ALogBook.ClinicSessions" Width="1.5" PointX="8.5" PointY="4.5" />
         <EntityTypeShape EntityType="ALogBook.RefClinics" Width="1.5" PointX="12.25" PointY="1.75" />

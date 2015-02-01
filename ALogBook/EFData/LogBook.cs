@@ -19,13 +19,16 @@ namespace ALogBook.EFData
         public string MRN { get; set; }
         public string Procedure { get; set; }
         public string Indication { get; set; }
-        public string Assist { get; set; }
-        public string Supervised { get; set; }
-        public string Unsupervised { get; set; }
+        public Nullable<bool> Assist { get; set; }
+        public Nullable<bool> Supervised { get; set; }
+        public Nullable<bool> Unsupervised { get; set; }
         public string TeachingByTrainee { get; set; }
         public string Comments { get; set; }
         public int UsersId { get; set; }
         public int RefSurgeryId { get; set; }
+        public bool Deleted { get; set; }
+        public Nullable<System.DateTime> Created { get; set; }
+        public Nullable<System.DateTime> Modified { get; set; }
     
         public virtual Users User { get; set; }
         public virtual RefSurgery RefSurgery { get; set; }

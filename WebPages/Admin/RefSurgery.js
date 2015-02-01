@@ -172,6 +172,7 @@ window.app.controller('refSurgeryController', function ($scope, $http, getAllSur
 
         if (response.status == 201) {
             $scope.successMessage = "Added!!";
+            $scope.refSurgery = {};
         }
 
         if (response.status == 200) {

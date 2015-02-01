@@ -103,14 +103,14 @@ window.app.controller('managerUsersController', function ($scope, $http, getAllS
 
     function clearUser() {
         $scope.user = {};
-        //$scope.user.FirstName = "";
-        //$scope.user.LastName = "";
-        //$scope.user.Email = "";
-        //$scope.user.Address1 = "";
-        //$scope.user.Address2 = "";
-        //$scope.user.Address3 = "";
-        //$scope.user.Phone1 = "";
-        //$scope.user.Phone2 = "";
+        $scope.user.FirstName = "";
+        $scope.user.LastName = "";
+        $scope.user.Email = "";
+        $scope.user.Address1 = "";
+        $scope.user.Address2 = "";
+        $scope.user.Address3 = "";
+        $scope.user.Phone1 = "";
+        $scope.user.Phone2 = "";
     }
 
     function loadData() {

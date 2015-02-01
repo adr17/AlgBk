@@ -19,6 +19,9 @@ namespace ALogBook.EFData
         public System.DateTime EndDate { get; set; }
         public short Year { get; set; }
         public int UsersId { get; set; }
+        public Nullable<System.DateTime> Created { get; set; }
+        public Nullable<System.DateTime> Modified { get; set; }
+        public Nullable<bool> Deleted { get; set; }
     
         public virtual Users User { get; set; }
     }

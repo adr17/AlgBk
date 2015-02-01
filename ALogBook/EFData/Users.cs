@@ -28,6 +28,11 @@ namespace ALogBook.EFData
         public string Address3 { get; set; }
         public string Phone1 { get; set; }
         public string Phone2 { get; set; }
+        public string TrainingSite { get; set; }
+        public string TrainingYear { get; set; }
+        public Nullable<System.DateTime> Created { get; set; }
+        public Nullable<System.DateTime> Modified { get; set; }
+        public Nullable<bool> Deleted { get; set; }
     
         public virtual ICollection<ClinicSessions> ClinicSessions { get; set; }
     }

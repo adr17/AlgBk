@@ -43,6 +43,11 @@
     <Property Name="Phone1" Type="String" Nullable="true" />
     <Property Name="Phone2" Type="String" Nullable="true" />
     <NavigationProperty Name="ClinicSessions" Relationship="ALogBook.UsersClinicSessions" FromRole="Users" ToRole="ClinicSessions" />
+    <Property Name="TrainingSite" Type="String" Nullable="true" />
+    <Property Name="TrainingYear" Type="String" Nullable="true" />
+    <Property Name="Created" Type="DateTime" Nullable="true" />
+    <Property Name="Modified" Type="DateTime" Nullable="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="true" />
   </EntityType>
   <EntityType Name="TrainingHistory">
     <Key>
@@ -53,6 +58,9 @@
     <Property Name="EndDate" Type="DateTime" Nullable="false" />
     <Property Name="Year" Type="Int16" Nullable="false" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="true" />
+    <Property Name="Modified" Type="DateTime" Nullable="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="true" />
     <NavigationProperty Name="User" Relationship="ALogBook.UsersTrainingHistory" FromRole="TrainingHistory" ToRole="Users" />
   </EntityType>
   <EntityType Name="RefAbbreviations">
@@ -62,6 +70,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Code" Type="String" Nullable="false" />
     <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="true" />
+    <Property Name="Modified" Type="DateTime" Nullable="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="true" />
   </EntityType>
   <EntityType Name="RefSurgery">
     <Key>
@@ -69,6 +80,9 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Type" Type="String" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="true" />
+    <Property Name="Modified" Type="DateTime" Nullable="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="true" />
   </EntityType>
   <EntityType Name="LogBook">
     <Key>
@@ -79,15 +93,18 @@
     <Property Name="MRN" Type="String" Nullable="true" />
     <Property Name="Procedure" Type="String" Nullable="true" />
     <Property Name="Indication" Type="String" Nullable="true" />
-    <Property Name="Assist" Type="String" Nullable="true" />
-    <Property Name="Supervised" Type="String" Nullable="true" />
-    <Property Name="Unsupervised" Type="String" Nullable="true" />
+    <Property Name="Assist" Type="Boolean" Nullable="true" />
+    <Property Name="Supervised" Type="Boolean" Nullable="true" />
+    <Property Name="Unsupervised" Type="Boolean" Nullable="true" />
     <Property Name="TeachingByTrainee" Type="String" Nullable="true" />
     <Property Name="Comments" Type="String" Nullable="true" />
     <NavigationProperty Name="User" Relationship="ALogBook.UsersLogBook" FromRole="LogBook" ToRole="Users" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="RefSurgery" Relationship="ALogBook.RefSurgeryLogBook" FromRole="LogBook" ToRole="RefSurgery" />
     <Property Name="RefSurgeryId" Type="Int32" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="true" />
+    <Property Name="Modified" Type="DateTime" Nullable="true" />
   </EntityType>
   <Association Name="UsersLogBook">
     <End Type="ALogBook.Users" Role="Users" Multiplicity="1" />
@@ -110,6 +127,9 @@
     <NavigationProperty Name="RefClinic" Relationship="ALogBook.ClinicSessionsRefClinics" FromRole="ClinicSessions" ToRole="RefClinics" />
     <Property Name="RefClinicsId" Type="Int32" Nullable="false" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="true" />
+    <Property Name="Modified" Type="DateTime" Nullable="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="true" />
   </EntityType>
   <EntityType Name="RefClinics">
     <Key>
@@ -117,6 +137,9 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Type" Type="String" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="true" />
+    <Property Name="Modified" Type="DateTime" Nullable="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="true" />
   </EntityType>
   <Association Name="ClinicSessionsRefClinics">
     <End Type="ALogBook.ClinicSessions" Role="ClinicSessions" Multiplicity="*" />

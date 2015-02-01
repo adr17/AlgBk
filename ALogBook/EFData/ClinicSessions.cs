@@ -18,6 +18,9 @@ namespace ALogBook.EFData
         public string Date { get; set; }
         public int RefClinicsId { get; set; }
         public int UsersId { get; set; }
+        public Nullable<System.DateTime> Created { get; set; }
+        public Nullable<System.DateTime> Modified { get; set; }
+        public Nullable<bool> Deleted { get; set; }
     
         public virtual RefClinics RefClinic { get; set; }
     }

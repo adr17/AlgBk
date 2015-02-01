@@ -9,20 +9,25 @@ window.app.factory('menuData', function () {
 
 
 window.app.controller('adminController', function ($scope, $http, menuData) {
-    $scope.headerText = "Admin Controller";
-
-
-
     $scope.menuData = menuData;
-    // Menu changers
-    $scope.menuChange = function (str) {
-        $scope.menuData.abbrHideShow = false;
+    init();
+
+    function init() {
+        $scope.headerText = "Admin Controller";
+        $scope.menuData.usersShow = true;
         $scope.menuData.surgeryHideShow = false;
         $scope.menuData.abbrShow = false;
-        $scope.menuData.usersShow = true;
+    }
+
+ 
+    // Menu changers
+    $scope.menuChange = function (str) {
+        $scope.menuData.usersShow = false;
+        $scope.menuData.surgeryHideShow = false;
+        $scope.menuData.abbrShow = false;
 
         if (str == 'abbr') {
-            $scope.menuData.abbrHideShow = true;
+
             $scope.menuData.abbrShow = true;
         }
 

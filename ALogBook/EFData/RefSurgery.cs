@@ -16,5 +16,8 @@ namespace ALogBook.EFData
     {
         public int Id { get; set; }
         public string Type { get; set; }
+        public Nullable<System.DateTime> Created { get; set; }
+        public Nullable<System.DateTime> Modified { get; set; }
+        public Nullable<bool> Deleted { get; set; }
     }
 }

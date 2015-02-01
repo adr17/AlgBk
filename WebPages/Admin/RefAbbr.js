@@ -162,6 +162,11 @@ window.app.controller('refAbbrController', function ($scope, $http, getAllAbbrev
         }
 
     };
+    var deafualtForm = {
+        Id: '',
+        Code: '',
+        Description: ''
+    }
 
     var OnUpdateComplete = function (response) {
         if (response.status == 204) {
@@ -170,6 +175,9 @@ window.app.controller('refAbbrController', function ($scope, $http, getAllAbbrev
 
         if (response.status == 201) {
             $scope.successMessage = "Added!!";
+            $scope.addAbbrForm.$setPristine();
+            $scope.refAbbr = angular.copy(deafualtForm);
+
         }
 
         if (response.status == 200) {

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <script src="../scripts/jquery-1.9.1.min.js"></script>
+    <script src="../scripts/angular.js"></script>
+    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="AngularModule.js"></script>
+    <script src="LogBook.js"></script>
+
+    <title></title>
+</head>
+<body data-ng-app="angularLogbook">
+    <section data-ng-controller="mainController">
+        <div id="menuContainer">
+            <ul class="breadcrumb">
+                <li><a href="" ng-click="">Log Book</a></li>
+
+            </ul>
+        </div>
+        <div>
+            <h2><strong>{{headerText}}</strong></h2>
+
+        </div>
+    </section>
+
+    <table class="table table-bordered" ng-show="true">
+        <tr>
+            <th>Date</th>
+            <th>MRN/NHI</th>
+            <th>Surgery</th>
+            <th>Indication</th>
+            <th>Assisit</th>
+            <th>Supervised</th>
+            <th>Teaching by trainee</th>
+            <th>Comments</th>
+        </tr>
+        <tbody>
+            <tr>
+                <td>
+                    <span>
+                        {{LogBook.Date}}
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        {{LogBook.MRN}}
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        {{LogBook.RefSurgeryId}}
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
