@@ -74,10 +74,10 @@ namespace ALogBook.Controllers
         [ResponseType(typeof(LogBook))]
         public async Task<IHttpActionResult> PostLogBook(LogBook logbook)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             db.LogBooks.Add(logbook);
             await db.SaveChangesAsync();

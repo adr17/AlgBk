@@ -8,6 +8,7 @@
     <script src="../scripts/angular.js"></script>
     <script src="../scripts/bootstrap.min.js"></script>
     <script src="AngularModule.js"></script>
+    <script src="../Admin/RefSurgery.js"></script>
     <script src="LogBook.js"></script>
 
     <title></title>
@@ -23,69 +24,54 @@
         <div>
             <h2><strong>{{headerText}}</strong></h2>
 
-        </div>
-    </section>
-
-    <div class="form-horizontal">
-        <div id="logBookContainer" class="form-group">
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input type='text' ng-model='LogBook.Date' placeholder="date" />
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input type="text" class="form-control" name="inputType" placeholder="MRN" ng-model="LogBook.MRN" required>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input class="form-control" type='text' ng-model='LogBook.Procedure' placeholder="Procedure" />
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input class="form-control" type='text' ng-model='LogBook.Assist' placeholder="Assist" />
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input class="form-control" type='text' ng-model='LogBook.Supervised' placeholder="Supervised" />
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input class="form-control" type='text' ng-model='LogBook.TeachingByTrainee' placeholder="TeachingByTrainee" />
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input class="form-control" type='text' ng-model='LogBook.Comments' placeholder="Comments" />
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input class="form-control" type='text' ng-model='LogBook.UsersId' placeholder="User" />
-            </div>
-
-            <div class="col-sm-6 col-md-6 col-lg-8">
-                <input class="form-control" type='text' ng-model='LogBook.RefSurgeryId' placeholder="Surgery" />
-            </div>
-            <div>
-                <button>Refresh</button><button>Save</button>
-            </div>
+            <div ng-show="errorMessage" class="alert alert-danger"><h3>{{errorMessage}}</h3></div>
         </div>
 
-        <!--<form>
-            <div class="row">
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" placeholder="Username">
-                    </div>
+        <form name="addForm" class="form" ng-submit="submitForm(addForm.$valid)">
+            <div class="form-horizontal" style="margin:10px;padding:5px">
+                <div>
+                    <button>Clear</button><input id="Button1" type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary" value="Submit" />
                 </div>
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Amount">
-                        <span class="input-group-addon">.00</span>
+                <div id="logBookContainer" class="form-group">
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <input type='datetime' class="form-control" ng-model='LogBook.Date' placeholder="date" readonly="readonly" />
                     </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control" placeholder="US Dollar">
-                        <span class="input-group-addon">.00</span>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <input type="text" class="form-control" name="mrn" placeholder="MRN" ng-model="LogBook.MRN">
                     </div>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+
+                        <select class="form-control" ng-options="a.Id as a.Type for a in refSurgeries" ng-model="LogBook.RefSurgeryId"></select>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <input class="form-control" type='text' name="procedure" ng-model='LogBook.Indication' placeholder="Indication" />
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <label class="form-control">Assisted</label>
+                        <input type="radio" ng-model="LogBook.Assist" value="1">Yes <br />
+                        <input type="radio" ng-model="LogBook.Assist" value="0"> No <br />
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <label class="form-control">Supervised</label>
+                        <input type="radio" ng-model="LogBook.Supervised" value="1">Yes <br />
+                        <input type="radio" ng-model="LogBook.Supervised" value="0"> No <br />
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <textarea rows="4" class="form-control" ng-model='LogBook.TeachingByTrainee' placeholder="TeachingByTrainee"></textarea>
+
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <textarea rows="4" class="form-control" ng-model='LogBook.Comments' placeholder="Comments"></textarea>
+                    </div>
+
                 </div>
+
             </div>
-        </form>-->
-    </div>
-    <br /><br />
-   
+        </form>
+            <br /><br />
+            <div ng-repeat="a in b">
+                <input type="text" ng-model="a.value" />{{a.value}}
+            </div>
+</section>
 </body>
 </html>
