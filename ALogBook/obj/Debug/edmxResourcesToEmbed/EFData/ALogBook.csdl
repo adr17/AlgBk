@@ -37,6 +37,7 @@
     <Property Name="FirstName" Type="String" Nullable="true" />
     <Property Name="LastName" Type="String" Nullable="true" />
     <Property Name="Email" Type="String" Nullable="true" />
+    <Property Name="Password" Type="String" Nullable="false" />
     <Property Name="Address1" Type="String" Nullable="true" />
     <Property Name="Address2" Type="String" Nullable="true" />
     <Property Name="Address3" Type="String" Nullable="true" />

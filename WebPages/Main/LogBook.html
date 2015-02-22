@@ -10,51 +10,53 @@
     <script src="AngularModule.js"></script>
     <script src="../Admin/RefSurgery.js"></script>
     <script src="LogBook.js"></script>
-
     <title></title>
 </head>
 <body data-ng-app="angularLogbook">
     <section data-ng-controller="mainController">
         <div id="menuContainer">
             <ul class="breadcrumb">
-                <li><a href="" ng-click="">Log Book entry form</a></li>
+                <li><a href="" ng-click="">Log Book</a></li>
                 <li><a href="" ng-click="">Entries</a></li>
             </ul>
         </div>
         <div>
             <h2><strong>{{headerText}}</strong></h2>
-
+            <div ng-show="successMessage" class="alert alert-dismissable alert-info"><h3>{{successMessage}}</h3></div>
             <div ng-show="errorMessage" class="alert alert-danger"><h3>{{errorMessage}}</h3></div>
         </div>
-
+        <div>
+            <button ng-click="ClearForm()">Clear</button>
+        </div>
         <form name="addForm" class="form" ng-submit="submitForm(addForm.$valid)">
             <div class="form-horizontal" style="margin:10px;padding:5px">
-                <div>
-                    <button>Clear</button><input id="Button1" type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary" value="Submit" />
-                </div>
+
                 <div id="logBookContainer" class="form-group">
                     <div class="col-sm-6 col-md-6 col-lg-8">
-                        <input type='datetime' class="form-control" ng-model='LogBook.Date' placeholder="date" readonly="readonly" />
+                        <!--| date:yyyy-MM-dd HH:mm:ss Z-->
+                        <input type='datetime' class="form-control" ng-model="LogBook.Date" placeholder="date" readonly="readonly" />
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-8">
-                        <input type="text" class="form-control" name="mrn" placeholder="MRN" ng-model="LogBook.MRN">
+                        <input type="text" class="form-control" name="mrn" placeholder="MRN" ng-model="LogBook.MRN" required>
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-8">
-
-                        <select class="form-control" ng-options="a.Id as a.Type for a in refSurgeries" ng-model="LogBook.RefSurgeryId"></select>
+                        <select class="form-control" ng-options="a.Id as a.Type for a in refSurgeries" ng-model="LogBook.RefSurgeryId">
+                            <option style="display:none" value="">Please select...</option>
+                        </select>
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-8">
-                        <input class="form-control" type='text' name="procedure" ng-model='LogBook.Indication' placeholder="Indication" />
+                        <input class="form-control" type='text' name="procedure" ng-model='LogBook.Indication' placeholder="Indication" required />
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-8">
-                        <label class="form-control">Assisted</label>
-                        <input type="radio" ng-model="LogBook.Assist" value="1">Yes <br />
-                        <input type="radio" ng-model="LogBook.Assist" value="0"> No <br />
+                        <label class="">Assisted</label>
+                        <br />
+                        <input class="" type="radio" ng-model="LogBook.Assist" value="true">Yes <br />
+                        <input class="" type="radio" ng-model="LogBook.Assist" value="false"> No
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-8">
-                        <label class="form-control">Supervised</label>
-                        <input type="radio" ng-model="LogBook.Supervised" value="1">Yes <br />
-                        <input type="radio" ng-model="LogBook.Supervised" value="0"> No <br />
+                        <label class="">Supervised</label><br />
+                        <input type="radio" ng-model="LogBook.Supervised" value="True">Yes <br />
+                        <input type="radio" ng-model="LogBook.Supervised" value="False"> No 
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-8">
                         <textarea rows="4" class="form-control" ng-model='LogBook.TeachingByTrainee' placeholder="TeachingByTrainee"></textarea>
@@ -63,15 +65,17 @@
                     <div class="col-sm-6 col-md-6 col-lg-8">
                         <textarea rows="4" class="form-control" ng-model='LogBook.Comments' placeholder="Comments"></textarea>
                     </div>
-
+                    <div class="col-sm-6 col-md-6 col-lg-8">
+                        <input id="Button1" class="btn btn-primary form-control" type="submit" ng-disabled="addForm.$invalid" value="Submit" />
+                    </div>
                 </div>
 
             </div>
         </form>
-            <br /><br />
-            <div ng-repeat="a in b">
-                <input type="text" ng-model="a.value" />{{a.value}}
-            </div>
-</section>
+        <br /><br />
+        <div ng-repeat="a in b">
+            <input type="text" ng-model="a.value" />{{a.value}}
+        </div>
+    </section>
 </body>
 </html>

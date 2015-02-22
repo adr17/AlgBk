@@ -37,6 +37,7 @@
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="true" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address1" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Address2" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Address3" Type="nvarchar(max)" Nullable="true" />

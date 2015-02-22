@@ -7,7 +7,6 @@ window.app.factory('menuData', function () {
     return { logBookHideShow: true, loginHideShow: false, registerHideShow: true }
 });
 
-
 window.app.factory('postLogBookService', ['$http', function ($http) {
 
     var postResponse = function (data) {
@@ -25,8 +24,6 @@ window.app.factory('postLogBookService', ['$http', function ($http) {
     return { postResponse: postResponse };
 
 }]);
-
-
 
 window.app.controller('mainController', function ($scope, $http, menuData, $timeout, getAllSurgeriesService, postLogBookService) {
     $scope.getAllSurgeriesService = getAllSurgeriesService;
@@ -68,13 +65,13 @@ window.app.controller('mainController', function ($scope, $http, menuData, $time
         $scope.LogBook.Date = "";
         $scope.LogBook.MRN = "";
         $scope.LogBook.Indication = "";
-        $scope.LogBook.Assist = "";
+        $scope.LogBook.Assist = false;
         $scope.LogBook.Indication = "";
-        $scope.LogBook.Supervised = "";
+        $scope.LogBook.Supervised = false;
         $scope.LogBook.Unsupervised = "";
         $scope.LogBook.TeachingByTrainee = "";
         $scope.LogBook.Comments = "";
-        $scope.LogBook.Procedure = "";   
+        $scope.LogBook.Procedure = "";
         $scope.LogBook.RefSurgeryId = "";
         $scope.LogBook.UsersId = 1;
     }
@@ -85,6 +82,10 @@ window.app.controller('mainController', function ($scope, $http, menuData, $time
         if (isValid) {
             $scope.postLogBook();
         }
+    };
+
+    var ValidateModel = function () {
+
     };
 
     $scope.postLogBook = function () {
@@ -107,7 +108,7 @@ window.app.controller('mainController', function ($scope, $http, menuData, $time
         }
 
         if (response.status == 201) {
-            $scope.successMessage = "Added!!";
+            $scope.successMessage = "Log Submitted";
 
         }
 
@@ -117,14 +118,15 @@ window.app.controller('mainController', function ($scope, $http, menuData, $time
 
     };
 
+    $scope.ClearForm = function () { init(); };
 
     $scope.$watch('LogBook.MRN', function () {
         //if (timeout) {
         //    $timeout.cancel(timeout)
         //}
-        if(!$scope.LogBook.Date)
-        $scope.LogBook.Date = new Date();
-       // timeout = $timeout(saveUpdates, 1000);
+        if (!$scope.LogBook.Date)
+            $scope.LogBook.Date = new Date;
+        // timeout = $timeout(saveUpdates, 1000);
 
     }, true);
 
@@ -146,8 +148,6 @@ window.app.controller('mainController', function ($scope, $http, menuData, $time
         } else {
             $scope.errorMessage = "There was a server error";
         }
-
-
     };
 
 });

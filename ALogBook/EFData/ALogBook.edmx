@@ -42,6 +42,7 @@
     <Property Name="FirstName" Type="nvarchar(max)" Nullable="true" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address1" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Address2" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Address3" Type="nvarchar(max)" Nullable="true" />
@@ -230,6 +231,7 @@
           <Property Name="FirstName" Type="String" Nullable="true" />
           <Property Name="LastName" Type="String" Nullable="true" />
           <Property Name="Email" Type="String" Nullable="true" />
+          <Property Name="Password" Type="String" Nullable="false" />
           <Property Name="Address1" Type="String" Nullable="true" />
           <Property Name="Address2" Type="String" Nullable="true" />
           <Property Name="Address3" Type="String" Nullable="true" />
@@ -395,6 +397,7 @@
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Address1" ColumnName="Address1" />
           <ScalarProperty Name="Address2" ColumnName="Address2" />
           <ScalarProperty Name="Address3" ColumnName="Address3" />

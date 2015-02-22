@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <script src="../scripts/jquery-2.1.3.min.js"></script>
+    <script src="../scripts/angular.js"></script>
+    <script src="../scripts/bootstrap.min.js"></script>
+    <script src="AngularModule.js"></script>
+    <script src="RegistrationModule.js"></script>
+    <title></title>
+</head>
+<body data-ng-app="angularLogbook"> 
+
+    <section data-ng-controller="registrationController">
+        <div id="registrationContainer" class="form-group col-md-offset-1 col-sm-offset-1 col-lg-offset-1">
+            <h1>Register User</h1>
+            <div ng-show="errorMessage" class="alert alert-danger"><h3>{{errorMessage}}</h3></div>
+            <div ng-show="successMessage" class="alert alert-dismissable alert-info"><h3>{{successMessage}}</h3></div>
+
+            <form name="addForm" class="form" ng-submit="submitForm(addForm.$valid)">
+                <fieldset>
+                    <div class="page-header">
+                        <h3>Registration <small>Form</small></h3>
+                    </div>
+                    <div class='container'>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtfname.$invalid && !addForm.txtfname.$pristine }">
+                                <p ng-show="addForm.txtfname.$invalid && !addForm.txtfname.$pristine" class="text-danger">First Name is required</p>
+                                <input type="text" class="form-control" name="txtfname" placeholder="First Name" ng-model="User.FirstName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtlname.$invalid && !addForm.txtlname.$pristine }">
+                                <p ng-show="addForm.txtlname.$invalid && !addForm.txtlname.$pristine" class="text-danger">Last Name is required</p>
+                                <input type="text" class="form-control" name="txtlname" placeholder="Last Name" ng-model="User.LastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtEmail.$invalid && !addForm.txtEmail.$pristine }">
+                                <p ng-show="addForm.txtEmail.$invalid && !addForm.txtEmail.$pristine" class="text-danger">Email is required</p>
+                                <input type="email" class="form-control" name="txtEmail" placeholder="Email" ng-model="User.Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtPasswrod.$invalid && !addForm.txtPasswrod.$pristine }">
+                                <p ng-show="addForm.txtPasswrod.$invalid && !addForm.txtPasswrod.$pristine" class="text-danger">Password is required</p>
+                                <input type="password" class="form-control" name="txtPasswrod" placeholder="Password" ng-model="User.Password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtAddress1.$invalid && !addForm.txtAddress1.$pristine }">
+                                <p ng-show="addForm.txtAddress1.$invalid && !addForm.txtAddress1.$pristine" class="text-danger">Address is required</p>
+                                <input type="text" class="form-control" name="txtAddress1" placeholder="Address Line 1" ng-model="User.Address1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtAddress2.$invalid && !addForm.txtAddress2.$pristine }">
+                                <p ng-show="addForm.txtAddress2.$invalid && !addForm.txtAddress2.$pristine" class="text-danger">Address is required</p>
+                                <input type="text" class="form-control" name="txtAddress2" placeholder="Address Line 2" ng-model="User.Address2" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8">
+                                <input type="text" class="form-control" name="txtAddress3" placeholder="Address Line 3" ng-model="User.Address3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtPhone1.$invalid && !addForm.txtPhone1.$pristine }">
+                                <p ng-show="addForm.txtPhone1.$invalid && !addForm.txtPhone1.$pristine" class="text-danger">Phone number is required</p>
+                                <input type="text" class="form-control" name="txtPhone1" placeholder="Phone number" ng-model="User.Phone1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8">
+                                <input type="text" class="form-control" name="txtPhone2" placeholder="Phone number 2" ng-model="User.Phone2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtTrainingSite.$invalid && !addForm.txtTrainingSite.$pristine }">
+                                <p ng-show="addForm.txtTrainingSite.$invalid && !addForm.txtTrainingSite.$pristine" class="text-danger">Training Site required</p>
+                                <input type="text" class="form-control" name="txtTrainingSite" placeholder="Training site" ng-model="User.TrainingSite" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-6 col-md-6 col-lg-8" ng-class="{ has-error: addForm.txtTrainingYear.$invalid && !addForm.txtTrainingYear.$pristine }">
+                                <p ng-show="addForm.txtTrainingYear.$invalid && !addForm.txtTrainingYear.$pristine" class="text-danger">Training Year required</p>
+                                <input type="number" class="form-control" name="txtTrainingYear" placeholder="Training Year" ng-model="User.TrainingYear" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-8">
+
+                            <br />
+                            <br />
+                            <input id="Button1" type="submit" ng-disabled="addForm.$invalid" class="btn btn-primary" value="Submit" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </section>
+</body>
+</html>
